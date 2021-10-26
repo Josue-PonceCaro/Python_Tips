@@ -1,4 +1,5 @@
 import re
+from typing import Pattern
 
 
 # Matches the contents of the group of the same number. Groups are numbered starting from 1. 
@@ -8,12 +9,31 @@ import re
 # it will not be interpreted as a group match, but as the character with octal value number. 
 # Inside the '[' and ']' of a character class, all numeric escapes are treated as characters.
 
-txt = "word fo to foffffo foffffo to to to to find"
-# x = re.search("\brd\b",txt)
-x = re.search(r'(to) (to) \2',txt)
+
+text = "hello, bye, fine."
+x = re.findall(r"[a-zA-Z]+",text)
 print(x)
-x = re.search(r'(.+) \1',txt)
-print(x)
+print(max(x,key=len))
+w = re.split("[^a-zA-Z]",text)
+print(w)
+# txt = '''
+# ssdfsfa sfwfs
+# to@fo.qq hkjhh
+# to@fi.nd ff
+# to@fo.qppq fs
+# to@fo.qjjq sff
+# '''
+
+
+# # x = re.search("\brd\b",txt)
+# x = re.search(r'(to to)+',txt)
+# print(x)
+# pattern = re.compile(r'(to@)(fo\.|fi\.)(\w+)(.*)')
+# # x = pattern.findall(txt)
+# x = pattern.sub(r'\1\2\3',txt)
+# print(x)
+# x = pattern.subn(r'\1\2',txt)
+# print(x)
 
 
 # \b
@@ -22,15 +42,17 @@ print(x)
 #  \b is defined as the boundary between a \w and a \W character (or vice versa),
 #  or between \w and the beginning/end of the string. This means that r'\bfoo\b'
 #  matches 'foo', 'foo.', '(foo)', 'bar foo baz' but not 'foobar' or 'foo3'.
-txt = "word foo to find"
-# x = re.search("\brd\b",txt)
-x = re.search(r'\bto\b',txt)
-print(x)
 
-# \A
-# Matches only at the start of the string.
-txt = "word foo to find"
-# x = re.search("\brd\b",txt)
-x = re.search(r'\Awor',txt)
-print(x)
+
+# txt = "word foo to find"
+# # x = re.search("\brd\b",txt)
+# x = re.search(r'\bto\b',txt)
+# print(x)
+
+# # \A
+# # Matches only at the start of the string.
+# txt = "word foo to find"
+# # x = re.search("\brd\b",txt)
+# x = re.search(r'\Awor',txt)
+# print(x)
 
